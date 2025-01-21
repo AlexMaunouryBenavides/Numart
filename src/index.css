@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: rgb(32, 32, 39);
+  color: white;
+  font-family: "Faculty Glyphic", serif;
+}
+
+.custom-file-label {
+  padding: 20px;
+  background-color: #334155;
+  cursor: pointer;
+}
+
+.file-chosen {
+  padding-left: 20px;
+  font-style: italic;
+}
