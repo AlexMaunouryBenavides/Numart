@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { UserAuth } from "../Context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../supabaseClient.js";
@@ -6,6 +6,7 @@ import { handleDelete, handleUpload } from "../utils/ImageStorageUtils.js";
 
 function Dashboard() {
   const [fileNames, setFilenames] = useState("No files...");
+  const fileInputRef = useRef(null);
   const [files, setFiles] = useState([]);
   const [uploadedImages, setUploadedImages] = useState([]);
   const { session, signOut } = UserAuth();
@@ -97,6 +98,11 @@ function Dashboard() {
     try {
       const uploadUrls = await handleUpload(files, session.user.id);
       setUploadedImages((prev) => [...prev, ...uploadUrls]);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+      setFilenames("No files...");
+      setFiles([]);
     } catch (err) {
       console.error("Error during file upload", err.message);
     }

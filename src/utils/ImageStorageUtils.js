@@ -18,7 +18,7 @@ export const handleDelete = async (filePath) => {
 export const handleUpload = async (files, userId) => {
   if (files.length === 0) {
     alert("Insert an image");
-    return;
+    return [];
   }
 
   const uploads = Array.from(files).map(async (file) => {
